@@ -50,10 +50,9 @@ body {
 }
 
 /* EX1) Write a selector to target the <title> of the page ❌ */
-head title {
-  text-transform: uppercase;
-  font-size: 10rem;
+head > title {
 }
+
 /* EX2) Write a selector to target every children of the navbar ❌ */
 .nav > * {
   color: teal !important;
