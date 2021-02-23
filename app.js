@@ -53,18 +53,30 @@ const removeLinks = (element) =>
 
 removeLinks(elseWhere);
 // EX15) Write a function to change the column size for post headings
-const blogPosts = document.getElementsByClassName('blog-post');
-[...blogPosts].forEach((post) => post.classList.add('d-flex', 'flex-column'));
-//! rivedere
+const blogPosts = document.querySelectorAll(
+  'body > div > div.row.mb-2 > .col-md-6'
+);
+blogPosts.forEach((post) => {
+  post.classList.remove('col-md-6');
+  post.classList.add('col-md-12');
+});
 
 // EX16) Write a function to remove the "Search" magnifying glass icon
 const magnifying = document.querySelector(
   'body > div > header > div > div.col-4.d-flex.justify-content-end.align-items-center > a.text-muted > svg'
 );
-magnifying.remove(); //!rivedere
+
 // EX17) Write a function to trim just the first 50 characters in the first paragraph for each blog post
-//! DA FARE
-const trim50Chars = () => {};
+
+const trim50Chars = () => {
+  const paragraphs = document.querySelectorAll(
+    'main > .row > .blog-main > .blog-post p:nth-of-type(2)'
+  );
+  paragraphs.forEach((para) => {
+    para.innerText = para.innerText.slice(0, 50);
+  });
+};
+trim50Chars();
 // EX18) Write a function and attach it to the "Newer" button, to add new Blog Post (just div and title)
 const blogSection = document.querySelector('body > main > div > .blog-main');
 console.log(blogSection);
@@ -88,4 +100,35 @@ const createNewBlogPost = (e) => {
 };
 newerBtn.addEventListener('click', createNewBlogPost);
 // EX19) Write a function and attach it to the "Older" button, to remove the last Blog Post
+const olderBtn = document.querySelector(
+  'body > main > div > div > nav > a.btn.btn-outline-primary'
+);
+olderBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const blogs = document.querySelectorAll(
+    'main > .row > .blog-main > .blog-post'
+  );
+  console.log(blogs);
+  blogs[blogs.length - 1].remove();
+});
 // EX20) Write an alert with the name of the author every time the user hover with the mouse over an author name
+// inizializzo tooltips
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+// {data-toggle:"tooltip", data-placement:"right", title:"Tooltip on right"}
+const setAttributes = function (element, objAttr) {
+  for (const key in objAttr) {
+    element.setAttribute(key, objAttr[key]);
+  }
+};
+
+const authors = document.querySelectorAll('.blog-post > .blog-post-meta > a');
+console.log(authors);
+authors.forEach((author) =>
+  setAttributes(author, {
+    'data-toggle': 'tooltip',
+    'data-placement': 'right',
+    title: `${author.innerText}`,
+  })
+);
