@@ -48,3 +48,60 @@ body {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
+
+/* EX1) Write a selector to target the <title> of the page ❌ */
+head title {
+  text-transform: uppercase;
+  font-size: 10rem;
+}
+/* EX2) Write a selector to target every children of the navbar ❌ */
+.nav > * {
+  color: teal !important;
+}
+
+/* EX3) Write a selector to target the "continue reading..." inside the jumbotron */
+.jumbotron div p > a {
+  text-transform: uppercase;
+  color: pink !important;
+}
+/* EX4) Write a selector to target the first blogpost */
+.jumbotron + .row > .col-md-6:first-child {
+  color: green;
+}
+/* EX5) Write a selector to target the "even" links in the navbar */
+.nav-scroller > nav > a:nth-child(even) {
+  color: maroon !important;
+}
+/* EX6) Write a selector to target the last blog post */
+div[class*='blog-main'] > .blog-post:last-of-type {
+  color: yellow;
+  background-color: turquoise;
+}
+/* EX7) Write a selector to target all the li into the first ordered-list in the sidebar ( Archives ) */
+aside > div:nth-child(2) > ol > li {
+  background-color: violet;
+  margin-bottom: 0.5rem;
+}
+
+/* EX8) Write a selector to target the second post author */
+body
+  > main
+  > .row
+  > .blog-main
+  .blog-post:nth-of-type(2)
+  > .blog-post-meta
+  > a {
+  background-color: yellow !important;
+  font-size: 2rem;
+}
+/* EX9) Write a selector to target the "back to top" link     
+#### EXTRA Try doing it without targeting the footer element directly */
+p + p > a:not(.container a):not(main a) {
+  color: blueviolet;
+  font-size: 10rem;
+}
+
+/* EX10) Write a selector to target the footer  */
+footer.blog-footer {
+  background-color: brown;
+}
